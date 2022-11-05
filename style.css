@@ -1,0 +1,13 @@
+form {
+    margin: 0px;
+}
+
+.form-group{
+    padding: 5px 10px;
+}
+
+.form-control{
+    width: 200px;
+    height: 20px;
+}
+
