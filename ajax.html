@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Quản lý sinh viên</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+  <h2>Quản lý sinh viên</h2>
+
+  <button onclick="openAddStudentModal()">Thêm sinh viên</button>
+
+  <table id="studentTable">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Tên</th>
+        <th>Ngành học</th>
+        <th>Edit</th>
+        <th>Xóa</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Dữ liệu sinh viên sẽ được hiển thị ở đây -->
+    </tbody>
+  </table>
+
+  <div id="pagination">
+    <!-- Phân trang sẽ được hiển thị ở đây -->
+  </div>
+
+  <div id="addStudentModal" style="display: none;">
+    <h3>Thêm sinh viên</h3>
+    <form id="addStudentForm">
+      <label for="name">Tên:</label>
+      <input type="text" id="name" name="name" required>
+
+      <label for="major">Ngành học:</label>
+      <input type="text" id="major" name="major" required>
+
+      <button type="submit">Thêm</button>
+      <div id="pagination"></div>
+    </form>
+    
+
+
+  </div>
+
+  <script>
+
+    // Hàm tạo thanh điều hướng phân trang
+    function createPagination(totalPages, currentPage) {
+  var paginationHtml = '';
+
+  // Nút "Previous"
+  if (currentPage > 1) {
+    paginationHtml += '<a href="#" class="pagination-link" data-page="' + (currentPage - 1) + '">Previous</a>';
+  }
+
+  // Các nút số trang
+  for (var i = 1; i <= totalPages; i++) {
+    var activeClass = (i === currentPage) ? 'active' : '';
+    paginationHtml += '<a href="#" class="pagination-link ' + activeClass + '" data-page="' + i + '">' + i + '</a>';
+  }
+
+  // Nút "Next"
+  if (currentPage < totalPages) {
+    paginationHtml += '<a href="#" class="pagination-link" data-page="' + (currentPage + 1) + '">Next</a>';
+  }
+
+  $('#pagination').html(paginationHtml);
+
+  // Xử lý sự kiện click vào các nút phân trang
+  $('.pagination-link').click(function(event) {
+    event.preventDefault();
+
+    var page = $(this).data('page');
+    loadStudentList(page);
+  });
+}
+
+    var currentPage = 1; // Trang hiện tại
+    var perPage = 2; // Số lượng sinh viên hiển thị mỗi trang
+
+    // Gọi hàm để tải danh sách sinh viên ban đầu
+    loadStudentList();
+
+    // Gán sự kiện click cho các nút phân trang
+    $(document).on('click', '.pagination-link', function() {
+      var page = $(this).data('page');
+      currentPage = page; // Cập nhật trang hiện tại
+
+      // Gọi hàm để tải danh sách sinh viên
+      loadStudentList();
+    });
+
+    // Sự kiện submit form thêm sinh viên
+    $('#addStudentForm').submit(function(event) {
+      event.preventDefault();
+
+      var name = $('#name').val();
+      var major = $('#major').val();
+
+      // Gửi yêu cầu AJAX để thêm sinh viên
+      $.ajax({
+        url: 'add_student.php',
+        type: 'POST',
+        data: {
+          name: name,
+          major: major
+        },
+        success: function(response) {
+          // Sau khi thêm thành công, đóng modal và tải lại danh sách sinh viên
+          $('#addStudentModal').hide();
+          $('#addStudentForm')[0].reset();
+          loadStudentList();
+        }
+      });
+    });
+
+    // Gửi yêu cầu AJAX để tải danh sách sinh viên
+    function loadStudentList() {
+      $.ajax({
+        url: 'get_students.php',
+        type: 'GET',
+        data: {
+          page: currentPage,
+          perPage: perPage
+        },
+        success: function(response) {
+          var result = $.parseJSON(response);
+
+          // Hiển thị danh sách sinh viên
+          var studentList = result.studentList;
+          var tableHtml = '';
+          for (var i = 0; i < studentList.length; i++) {
+            tableHtml += '<tr>';
+            tableHtml += '<td>' + studentList[i].id + '</td>';
+            tableHtml += '<td>' + studentList[i].name + '</td>';
+            tableHtml += '<td>' + studentList[i].major + '</td>';
+            tableHtml += '<td><button onclick="editStudent(' + studentList[i].id + ')">Edit</button></td>';
+            tableHtml += '<td><button onclick="deleteStudent(' + studentList[i].id + ')">Delete</button></td>';
+            tableHtml += '</tr>';
+          }
+          $('#studentTable tbody').html(tableHtml);
+
+          // Hiển thị phân trang
+          var paginationHtml = '';
+          for (var j = 1; j <= result.totalPages; j++) {
+            var activeClass = (j === currentPage) ? 'active' : '';
+            paginationHtml += '<a href="#" class="pagination-link ' + activeClass + '" data-page="' + j + '">' + j + '</a>';
+          }
+          $('#pagination').html(paginationHtml);
+        }
+      });
+    }
+
+    // Hàm xử lý khi người dùng nhấp vào nút Edit
+    function editStudent(id) {
+      // Thực hiện các thao tác cần thiết để chỉnh sửa sinh viên với ID tương ứng
+      // Ví dụ: chuyển hướng đến trang chỉnh sửa sinh viên với ID nhận được
+      window.location.href = 'edit_student.php?id=' + id;
+    }
+
+    // Hàm xử lý khi người dùng nhấp vào nút Delete
+    function deleteStudent(id) {
+      // Thực hiện các thao tác cần thiết để xóa sinh viên với ID tương ứng
+      // Ví dụ: gửi yêu cầu AJAX để xóa sinh viên và sau đó cập nhật lại danh sách sinh viên
+      $.ajax({
+        url: 'delete_student.php',
+        type: 'POST',
+        data: {
+          id: id
+        },
+        success: function(response) {
+          // Sau khi xóa thành công, tải lại danh sách sinh viên
+          loadStudentList();
+        }
+      });
+    }
+
+    // Hiển thị modal thêm sinh viên
+    function openAddStudentModal() {
+      $('#addStudentModal').show();
+    }
+  </script>
+</body>
+</html>

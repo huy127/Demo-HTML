@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="quiz.css">
+    <title>Document</title>
+</head>
+<body>
+  <h1>JavaScript Online Quiz</h1>
+    <div id="question-container"></div>
+    <ul id="choice-container"></ul>
+    <div id="button-container">
+      <button id="previous-button" disabled>Previous Question</button>
+      <button id="next-button">Next Question</button>
+      <button id="submit-button" disabled>Submit</button>
+      <button id="restart-button">Restart</button>
+    </div>
+    <div id="score-container"></div>
+    <script src="quiz.js"></script>
+    <script src="quizUI.js"></script>
+    <script>
+      const questions = [
+        {
+          question: "What is the capital of France?",
+          choices: ["Paris", "London", "New York", "Berlin"],
+          correctAnswer: 0,
+        },
+        {
+          question: "What is the tallest mountain in the world?",
+          choices: ["Mount Everest", "Mount Kilimanjaro", "Mount Fuji", "Mount Rushmore"],
+          correctAnswer: 0,
+        },
+        {
+          question: "What is the currency of Japan?",
+          choices: ["Dollar", "Euro", "Yen", "Pound"],
+          correctAnswer: 2,
+        },
+      ];
+      const quiz = new Quiz(questions);
+  const quizUI = new QuizUI(quiz);
+  quizUI.displayCurrentQuestion();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Form HTML</title>
+</head>
+<body>
+    
+        <div class="html-form">
+            <div class="caption">
+                <h4>FA Survey Form</h4>
+                <i>Thank you for the time to help us improve the flatform</i>
+
+        </div>
+
+<form action="">
+        <div class="form-group">
+        <label for="fname">Name</label><br>
+        <input type="text" class="form-control" placeholder="Enter your name" required>
+        
+
+    
+        </div>
+
+        <div class="form-group">
+        <label for="femail">Email</label><br>
+        <input type="email" class="form-control" placeholder="Enter your email" required/>
+
+    </div>
+
+        <div class="form-group">
+        <label for="fage">Age</label><br>
+        <input type="number" class="form-control" placeholder="Enter your age" required/>
+
+    </div>
+
+       
+
+        
+
+    </div>
+    <div class="form-group">
+        <label for="role">which options best describes your current role</label><br>
+        <select name="role" id="frole">
+            <option value="role1">Select current role</option>
+            <option value="role2">css</option>
+            <option value="role3">js</option>
+            <option value="role4">realjs</option>
+        </select>
+
+    </div>
+    <div class="form-group form-group radio">
+        <label for="html">Would you recommend FA to a friend</label><br>
+        <input type="radio" id="html" name="friend" value="definitely"/>
+        <label for="css">Definitely</label><br>
+        
+        <input type="radio" id="css" name="friend" value="maybe"/>
+        <label for="notsure">Maybe</label><br>
+        
+        <input type="radio" id="notsure" name="friend" value="notsure"/>
+        <label for="js">Notsure</label><br>
+    </div>
+
+
+    <div class="form-group form-group checkbox">
+            <label for="ncheckbox">What would you like to see improve</label><br>
+            <input type="checkbox" id="vehicle1" name="vehicle1" value="fe"/>
+            <label for="vehicle1">Forn end</label><br>
+            
+            <input type="checkbox" id="vehicle2" name="vehicle2" value="be"/>
+            <label for="vehicle2">back end</label><br>
+
+            <input type="checkbox" id="vehicle3" name="vehicle3" value="ai"/>
+            <label for="vehicle3">ai</label><br>
+
+        
+    </div>
+    <div class="form-group">
+        <label for="comment">any comment</label>
+        <textarea name="commmet" id="textarea" cols="30" rows="10" placeholder="Enter comment"></textarea>
+
+    </div>
+    
+    <div class="form-group form-group submit">
+        <button>Submit</button>
+
+    </div>
+    
+</form>
+</body>
+</html>

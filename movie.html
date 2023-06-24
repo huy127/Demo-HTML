@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ajax Example</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            var page = 1;
+
+            // Gửi yêu cầu Ajax khi nhấp vào nút "Load More"
+            $('#loadMoreBtn').click(function() {
+                $.ajax({
+                    url: 'load_movies.php',
+                    type: 'GET',
+                    data: { page: page },
+                    success: function(response) {
+                        $('#moviesContainer').append(response);
+                        page++;
+                    },
+                    error: function(xhr, status, error) {
+                        console.log(error);
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <h2>Movies</h2>
+    <div id="moviesContainer">
+        <!-- Các phần tử phim ban đầu sẽ được hiển thị ở đây -->
+    </div>
+
+    <button id="loadMoreBtn">Load More</button>
+</body>
+</html>

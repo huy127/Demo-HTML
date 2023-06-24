@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="style.css" />
+    <title>Quản lý sinh viên</title>
+  </head>
+  <body>
+    <h1>Quản lý sinh viên</h1>
+
+    <div class="container">
+      <table id="studentTable">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Tên</th>
+            <th>Ngành học</th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="studentTableBody">
+          <!-- Dữ liệu sinh viên sẽ được thêm vào đây -->
+        </tbody>
+      </table>
+
+      <div id="pagination">
+        <!-- Đây là nơi để hiển thị thanh phân trang -->
+      </div>
+      <form id="studentForm">
+        <input type="hidden" id="studentId" />
+        <input type="text" id="studentName" placeholder="Tên sinh viên" required />
+        <select id="studentMajor" required>
+          <option value="">Chọn ngành học</option>
+          <option value="Công nghệ thông tin">Công nghệ thông tin</option>
+          <option value="Kinh tế">Kinh tế</option>
+          <option value="Y học">Y học</option>
+          <!-- Add more options as needed -->
+        </select>
+        <button type="submit">Lưu</button>
+      </form>
+      
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,61 @@
+.container {
+    margin: 20px;
+  }
+  
+  h1 {
+    text-align: center;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  table th, table td {
+    border: 1px solid #ccc;
+    padding: 8px;
+  }
+  
+  #studentForm input {
+    margin-right: 10px;
+  }
+  
+  #pagination {
+    margin-top: 10px;
+    text-align: center;
+  }
+  
+  #pagination a {
+    margin: 0 5px;
+    cursor: pointer;
+  }
+  
+  #pagination .active {
+    font-weight: bold;
+  }
+  .sidebar {
+    width: 200px;
+    background-color: #f1f1f1;
+    padding: 10px;
+  }
+  
+  .sidebar h2 {
+    margin-top: 0;
+    font-size: 18px;
+  }
+  
+  .sidebar ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .sidebar li {
+    margin-bottom: 5px;
+    cursor: pointer;
+  }
+  
+  .sidebar li:hover {
+    text-decoration: underline;
+  }
+  
+  

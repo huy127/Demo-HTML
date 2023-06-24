@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="card">
+        <div class="card-header">
+          <h2 class="card-title">Article Title</h2>
+          <p class="card-author">Author Name</p>
+        </div>
+        <div class="card-body">
+          <p class="card-description">Maecenas at magna eleifend, malesuada lorem eu, consectetur lacus. Nulla facilisi. Pellentesque a ligula sagittis, placerat ex quis, malesuada nisi. Praesent ac ligula et nibh porttitor ultricies. Nulla auctor, tellus at suscipit pretium, velit velit consectetur dolor, ut pharetra turpis elit eu lacus.</p>
+          <p class="card-description-more">Maecenas at magna eleifend, malesuada lorem eu, consectetur lacus. Nulla facilisi. Pellentesque a ligula sagittis, placerat ex quis, malesuada nisi. Praesent ac ligula et nibh porttitor ultricies. Nulla auctor, tellus at suscipit pretium, velit velit consectetur dolor, ut pharetra turpis elit eu lacus. Sed ut felis euismod, sollicitudin tellus eget, tincidunt lorem. Integer eget vestibulum mauris. Duis maximus nunc a sapien bibendum, vel aliquet ipsum fringilla. Suspendisse consectetur quam vel efficitur vehicula. Donec elementum mi ut diam efficitur fringilla. Sed faucibus quam nec justo volutpat, sed vehicula massa vehicula. Maecenas pretium ultricies orci, vel rutrum velit convallis nec. Morbi sit amet odio eu ante bibendum imperdiet vitae sed purus. Nulla luctus leo vel nunc gravida varius.</p>
+          <button class="card-readmore">Read More</button>
+          <button class="card-readless">Read Less</button>
+        </div>
+      </div>
+
+      
+      <div class="card">
+        <div class="card-header">
+          <h2 class="card-title">Article Title</h2>
+          <p class="card-author">Author Name</p>
+        </div>
+        <div class="card-body">
+          <p class="card-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque id velit ut nisl imperdiet consequat. Nam ut nibh vel ipsum blandit tincidunt vitae eu massa. Sed pellentesque, augue id dapibus ullamcorper, velit sapien bibendum lacus, in tincidunt tellus mauris ac tellus. Aenean at magna euismod, feugiat nulla vel, rhoncus mauris. Sed ac enim eleifend, ultricies urna a, interdum elit. Duis volutpat, augue nec tempor lobortis, risus purus aliquam justo, ac ullamcorper lorem orci at sapien. Donec tristique sapien eget libero sagittis, in dignissim tellus elementum. Suspendisse tempor ullamcorper lectus ac facilisis. Duis volutpat, risus eget eleifend dignissim, dolor neque posuere sapien, sit amet gravida nisi risus eu mi. Cras dignissim vitae nibh id posuere.</p>
+          <p class="card-description-more">Maecenas at magna eleifend, malesuada lorem eu, consectetur lacus. Nulla facilisi. Pellentesque a ligula sagittis, placerat ex quis, malesuada nisi. Praesent ac ligula et nibh porttitor ultricies. Nulla auctor, tellus at suscipit pretium, velit velit consectetur dolor, ut pharetra turpis elit eu lacus. Sed ut felis euismod, sollicitudin tellus eget, tincidunt lorem. Integer eget vestibulum mauris. Duis maximus nunc a sapien bibendum, vel aliquet ipsum fringilla. Suspendisse consectetur quam vel efficitur vehicula. Donec elementum mi ut diam efficitur fringilla. Sed faucibus quam nec justo volutpat, sed vehicula massa vehicula. Maecenas pretium ultricies orci, vel rutrum velit convallis nec. Morbi sit amet odio eu ante bibendum imperdiet vitae sed purus. Nulla luctus leo vel nunc gravida varius.</p>
+          <button class="card-readmore">Read More</button>
+          <button class="card-readless">Read Less</button>
+        </div>
+      </div>
+      
+  </body>
+
+</html>
+
+<script>
+  const cards = document.querySelectorAll('.card');
+
+cards.forEach(card => {
+  const cardDescription = card.querySelector('.card-description');
+  const cardDescriptionMore = card.querySelector('.card-description-more');
+  const cardReadmoreBtn = card.querySelector('.card-readmore');
+  const cardReadlessBtn = card.querySelector('.card-readless');
+
+  cardReadmoreBtn.addEventListener('click', function() {
+    cardDescription.style.display = 'none';
+    cardDescriptionMore.style.display = 'block';
+    cardReadmoreBtn.style.display = 'none';
+    cardReadlessBtn.style.display = 'block';
+  });
+
+  cardReadlessBtn.addEventListener('click', function() {
+    cardDescription.style.display = 'block';
+    cardDescriptionMore.style.display = 'none';
+    cardReadlessBtn.style.display = 'none';
+    cardReadmoreBtn.style.display = 'block';
+  });
+});
+
+
+  </script>
